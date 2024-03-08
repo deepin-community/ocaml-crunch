@@ -1,4 +1,10 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
+
+include /usr/share/ocaml/ocamlvars.mk
 
 %:
-	dh $@
+	dh $@ --with ocaml --buildsystem ocaml_dune
+
+override_dh_auto_test:
+# needs mirage-kv
