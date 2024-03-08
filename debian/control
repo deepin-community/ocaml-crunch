@@ -1,15 +1,65 @@
-Source: template-repository
-Section: unknown
+Source: ocaml-crunch
+Section: ocaml
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian OCaml Maintainers <debian-ocaml-maint@lists.debian.org>
+Uploaders: Stéphane Glondu <glondu@debian.org>
+Build-Depends:
+ debhelper-compat (= 13),
+ ocaml,
+ ocaml-dune,
+ libcmdliner-ocaml-dev,
+ libptime-ocaml-dev,
+ dh-ocaml (>= 1.2)
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Vcs-Browser: https://salsa.debian.org/ocaml-team/ocaml-crunch
+Vcs-Git: https://salsa.debian.org/ocaml-team/ocaml-crunch.git
+Homepage: https://github.com/mirage/ocaml-crunch
 
-Package: template-repository
+Package: ocaml-crunch
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends:
+ ${ocaml:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends}
+Description: convert a filesystem into a static OCaml module (tool)
+ ocaml-crunch takes a directory of files and compiles them into a
+ standalone OCaml module which serves the contents directly from
+ memory. This can be convenient for libraries that need a few embedded
+ files (such as a web server) and do not want to deal with all the
+ trouble of file configuration.
+ .
+ This package contains the command-line tool.
+
+Package: libcrunch-ocaml-dev
+Provides: ${ocaml:Provides}
+Architecture: any
+Depends:
+ ${ocaml:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends}
+Recommends: ocaml-findlib
+Description: convert a filesystem into a static OCaml module (dev files)
+ ocaml-crunch takes a directory of files and compiles them into a
+ standalone OCaml module which serves the contents directly from
+ memory. This can be convenient for libraries that need a few embedded
+ files (such as a web server) and do not want to deal with all the
+ trouble of file configuration.
+ .
+ This package contains development files.
+
+Package: libcrunch-ocaml
+Provides: ${ocaml:Provides}
+Architecture: any
+Depends:
+ ${ocaml:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends}
+Description: convert a filesystem into a static OCaml module (runtime files)
+ ocaml-crunch takes a directory of files and compiles them into a
+ standalone OCaml module which serves the contents directly from
+ memory. This can be convenient for libraries that need a few embedded
+ files (such as a web server) and do not want to deal with all the
+ trouble of file configuration.
+ .
+ This package contains runtime files.
